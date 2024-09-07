@@ -3,7 +3,7 @@ let campo = localStorage.getItem("compare");
 console.log(campo);
 let comparedItem = document.querySelector(".compare-table");
 let productsCompare = products.find((item) => item.id == campo);
-(function showCompare(productsCompare){
+function showCompare(productsCompare){
   comparedItem.innerHTML = `<tr>
        <th>Item</th>
        <td>
@@ -145,4 +145,5 @@ let productsCompare = products.find((item) => item.id == campo);
      </tr>
     `;
     
-})(productsCompare);
+}
+showCompare(productsCompare);
