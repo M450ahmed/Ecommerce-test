@@ -112,7 +112,7 @@ detailsContainer.innerHTML = `<div class="details-group">
         
       </ul>
     </div>`;
-    initCartPage()
+//    initCartPage()
     //updateCartUI();
    // updateTotalPriceUI(totalPrice);
 })(productDetails);
