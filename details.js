@@ -1,12 +1,12 @@
 let detailsContainer = document.querySelector(".details-container div");
-let proItemDetId = localStorage.getItem("proItemDetId");
+let productDetails = JSON.parse(localStorage.getItem("proItemDetId"));
 
-let productDetails = products.find((item) => item.id == proItemDetId);
-(function showDetails(productDetails){
-detailsContainer.innerHTML = `<div class="details-group">
-      <img src="${productDetails.image}" alt="" class="details-img">
+function showDetails(){
+let cartDetailsUI = productDetails.map((item) => {
+      return  `<div class="details-group">
+      <img src="${item.image}" alt="" class="details-img">
       <div class="details-small-imgs grid">
-        <img src="${productDetails.image}" alt="" class="details-small-img"/>
+        <img src="${item.image}" alt="" class="details-small-img"/>
         <img src="Imgs/blouse.jpeg" alt="" class="details-small-img"/>
         <img src="Imgs/blouse2.jpeg" alt="" class="details-small-img"/>
         
@@ -14,11 +14,11 @@ detailsContainer.innerHTML = `<div class="details-group">
       </div>
     </div> 
     <div class="details-group">
-      <h3 class="details-title">${productDetails.title}</h3>
+      <h3 class="details-title">${item.title}</h3>
       <p class="details-brand">Brands: <span>asos</span></p>
       <div class="details-price flex">
         <span class="new-price">$27</span>
-        <span class="old-price">$${productDetails.price} </span>
+        <span class="old-price">$${item.price} </span>
         <span class="save-price">$30 off</span>
       </div>
       <p class="short-discription">Balck Lenin top bal bla bla bal bla bla bla bla bla bla bla bla bla bal bla bla bla bla bla blahhhhhhh...</p>
@@ -76,7 +76,7 @@ detailsContainer.innerHTML = `<div class="details-group">
         <ul class="size-list">
           <li>
             <a href="#" 
-            class="size-link size-active">${productDetails.size}</a>
+            class="size-link size-active">${item.size}</a>
           </li>
           
           <li>
@@ -98,8 +98,8 @@ detailsContainer.innerHTML = `<div class="details-group">
       
       <div class="details-action">
        
-        <a href="#" class="btn btn-sm" onclick="addToCart(${productDetails.id})">Add to cart</a>
-        <a href="#" class="details-action-btn" onclick="addToFav(${productDetails.id})">
+        <a href="#" class="btn btn-sm" onclick="addToCart(${item.id})">Add to cart</a>
+        <a href="#" class="details-action-btn" onclick="addToFav(${item.id})">
           <i class="fi fi-rs-heart"></i>
         </a>
       </div>
@@ -112,7 +112,13 @@ detailsContainer.innerHTML = `<div class="details-group">
         
       </ul>
     </div>`;
-//    initCartPage()
+});
+detailsContainer.innerHTML = cartDetailsUI;
+   // initCartPage();
     //updateCartUI();
    // updateTotalPriceUI(totalPrice);
-})(productDetails);
+}
+(function initDetalPage() {
+ showDetails();
+  
+})();
