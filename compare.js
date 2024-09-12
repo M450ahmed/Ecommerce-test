@@ -1,13 +1,14 @@
 console.log("compare");
-let campo = localStorage.getItem("compare");
-console.log(campo);
+let campo = JSON.parse(localStorage.getItem("compare"));
+//console.log(campo);
 let comparedItem = document.querySelector(".compare-table");
-let productsCompare = products.find((item) => item.id == campo);
-function showCompare(productsCompare){
-  comparedItem.innerHTML = `<tr>
+
+function showCompare(){
+  let cartCompareUI = campo.map((item) => {
+        return`<tr>
        <th>Item</th>
        <td>
-         <img src="${productsCompare.image}" alt="" class="compare-img">
+         <img src="${item.image}" alt="" class="compare-img">
        </td>
        <td>
          <img src="Imgs/jumpsuit.jpeg" alt="" class="compare-img">
@@ -20,7 +21,7 @@ function showCompare(productsCompare){
      </tr>
      <tr>
        <th>Brand</th>
-       <td><h3 class="table-title">${productsCompare.title} </h3></td>
+       <td><h3 class="table-title">${item.title} </h3></td>
        
        <td><h3 class="table-title">Milky jumpsuit</h3></td>
        
@@ -36,7 +37,7 @@ function showCompare(productsCompare){
      <tr>
        <th class="footer-description">Description</th>
        <td>
-         <p>${productsCompare.title}- ${productsCompare.color} coloured bla bal bla bla bla bal bla bla bal blahhhhhhhhhhhhh</p>
+         <p>${item.title}- ${item.color} coloured bla bal bla bla bla bal bla bla bal blahhhhhhhhhhhhh</p>
        </td>
        <td>
          <p>Milky jumpsuit-bal bla bal bla bla bla bla bla bla bla bla balhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</p>
@@ -139,11 +140,15 @@ function showCompare(productsCompare){
      </tr>
      <tr>
        <th>Buy</th>
-       <td><a href="" class="btn btn-sm" onclick="addToCart(${productsCompare.id})">Add to cart</a></td>
+       <td><a href="" class="btn btn-sm" onclick="addToCart(${item.id})">Add to cart</a></td>
         <td><a href="" class="btn btn-sm">Add to cart</a></td>
        <td><a href="" class="btn btn-sm">Add to cart</a></td>
      </tr>
     `;
-    
-}
-showCompare(productsCompare);
+  });
+  comparedItem.innerHTML = cartCompareUI;
+};
+(function initCompPage() {
+  showCompare();
+
+})();
