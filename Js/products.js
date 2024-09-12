@@ -304,14 +304,60 @@ function calculateTotalPrice(cartItems) {
     pro3.innerHTML = productsUI.join("");
   }
 })();
+let dataDetails = [];
 function saveData(id) {
-  localStorage.setItem("proItemDetId", id);
-  window.location = "details.html";
+  let productDeta = products.find((item) => item.id === id);
+  //dataDetails.push(productDeta);
+  if(dataDetails.length >0){
+    dataDetails= [];
+  dataDetails.push(productDeta);
+  console.log(productDeta);
+  console.log(dataDetails);
+  localStorage.setItem("proItemDetId", JSON.stringify(dataDetails));
+  setTimeout(() => {
+    window.location = "details.html";
+    console.log("loaded");
+  }, 1000);
+  
+  }if(dataDetails.length ==0){
+    dataDetails.push(productDeta);
+    console.log(productDeta);
+    console.log(dataDetails);
+    localStorage.setItem("proItemDetId", JSON.stringify(dataDetails));
+    setTimeout(()=>{
+    window.location = "details.html";
+    console.log("loaded");
+  }, 1000);
+  }
+  //localStorage.setItem("proItemDetId", id);
+//  window.location = "details.html";
 }
-
+let compoItem = [];
 function compo(id) {
-  localStorage.setItem("compare", id);
-  window.location = "compare.html";
+  let comparisonDeta = products.find((item) => item.id === id);
+  if(compoItem.length >0){
+     compoItem = [];
+     compoItem.push(comparisonDeta);
+    // console.log(productDeta);
+     console.log(compoItem);
+     localStorage.setItem("compare", JSON.stringify(compoItem));
+     setTimeout(() => {
+       window.location = "compare.html";
+       console.log("loaded");
+     }, 1000); 
+  }if(compoItem.length == 0){
+    compoItem.push(comparisonDeta);
+    // console.log(productDeta);
+    console.log(compoItem);
+    localStorage.setItem("compare", JSON.stringify(compoItem));
+    setTimeout(() => {
+      window.location = "compare.html";
+      console.log("loaded");
+    }, 1000);
+  }
+  
+//  localStorage.setItem("compare", id);
+//  window.location = "compare.html";
 }
 
 
